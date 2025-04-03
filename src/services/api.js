@@ -1,21 +1,9 @@
-import { Student } from '../types/index';
-
-// Use the environment variables or fallback to the Azure URL
-// const BASE_URL = "https://studentfunctionmze.azurewebsites.net/api";
-
-// Determine which API URL to use based on the current hostname
-const isLocalhost = window.location.hostname === 'localhost' || 
-                    window.location.hostname === '127.0.0.1';
-
 // Fix indentation here
-const BASE_URL = isLocalhost 
-                ? import.meta.env.VITE_LOCAL_API_URL 
-                : (import.meta.env.VITE_AZURE_API_URL || '/api');                    
+const BASE_URL = "https://studentfunctionmze.azurewebsites.net/api";                    
 
 console.log('Using API URL:', BASE_URL);
 
-
-export const fetchStudents = async (): Promise<Student[]> => {
+export const fetchStudents = async () => {
     console.log('Fetching students from:', `${BASE_URL}/students`);
     const response = await fetch(`${BASE_URL}/students`);
     if (!response.ok) {
@@ -24,7 +12,7 @@ export const fetchStudents = async (): Promise<Student[]> => {
     return await response.json();
 };
 
-export const getStudent = async (id: string): Promise<Student> => {
+export const getStudent = async (id) => {
     console.log('Fetching student with ID:', id);
     const response = await fetch(`${BASE_URL}/students/${id}`);
     if (!response.ok) {
@@ -33,7 +21,7 @@ export const getStudent = async (id: string): Promise<Student> => {
     return await response.json();
 };
 
-export const addStudent = async (student: Student): Promise<Student> => {
+export const addStudent = async (student) => {
     console.log('Adding student:', student);
     const response = await fetch(`${BASE_URL}/students`, {
         method: 'POST',
@@ -48,12 +36,8 @@ export const addStudent = async (student: Student): Promise<Student> => {
     return await response.json();
 };
 
-export const updateStudent = async (student: Student): Promise<Student | { message: string }> => {
+export const updateStudent = async (student) => {
     console.log('Updating student:', student);
-    if (!student.StudentId) {
-        throw new Error('Student ID is required for update');
-    }
-    
     const response = await fetch(`${BASE_URL}/students/${student.StudentId}`, {
         method: 'PUT',
         headers: {
@@ -83,7 +67,7 @@ export const updateStudent = async (student: Student): Promise<Student | { messa
     }
 };
 
-export const deleteStudent = async (studentId: number): Promise<Student | {}> => {
+export const deleteStudent = async (studentId) => {
     console.log('Deleting student with ID:', studentId);
     const response = await fetch(`${BASE_URL}/students/${studentId}`, {
         method: 'DELETE'

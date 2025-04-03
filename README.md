@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# Student Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application for managing students. It allows users to perform CRUD (Create, Read, Update, Delete) operations on student records using an Azure Functions API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- List all students
+- Add a new student
+- Edit existing student details
+- Delete a student
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+student-management-app
+├── public
+│   ├── index.html          # Main HTML file for the React application
+│   └── favicon.ico         # Favicon for the application
+├── src
+│   ├── components          # Contains reusable components
+│   │   ├── StudentList.jsx # Component to display the list of students
+│   │   ├── StudentForm.jsx # Component for adding and updating student information
+│   │   ├── StudentItem.jsx # Component representing a single student
+│   │   └── NavBar.jsx      # Navigation bar component
+│   ├── services            # Contains API service functions
+│   │   └── api.js         # Functions for making API calls to the Azure Functions API
+│   ├── pages               # Contains page components
+│   │   ├── Home.jsx       # Landing page displaying the student list
+│   │   ├── AddStudent.jsx  # Page for adding a new student
+│   │   └── EditStudent.jsx # Page for editing an existing student
+│   ├── App.jsx             # Main component setting up routing
+│   ├── index.jsx           # Entry point of the application
+│   └── styles              # Contains CSS styles
+│       └── index.css       # Styles for the application
+├── package.json            # Configuration file for npm
+├── .env                    # Environment variables
+└── README.md               # Documentation for the project
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   cd student-management-app
+   ```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+3. Set up your environment variables in the `.env` file. For example:
+   ```
+   REACT_APP_API_URL=<your-azure-functions-api-url>
+   ```
+
+4. Start the development server:
+   ```
+   npm start
+   ```
+
+5. Open your browser and navigate to `http://localhost:3000` to view the application.
+
+## API Endpoints
+
+The application interacts with the following Azure Functions API endpoints:
+
+- `GET /api/students` - Retrieve the list of students
+- `POST /api/students` - Add a new student
+- `PUT /api/students` - Update an existing student
+- `DELETE /api/students/{id}` - Delete a student
+
+## Contributing
+
+Feel free to submit issues or pull requests if you have suggestions or improvements for the project.
+
+## License
+
+This project is licensed under the MIT License.
