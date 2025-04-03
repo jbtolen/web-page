@@ -1,6 +1,7 @@
 {
   "name": "student-management-app",
   "version": "1.0.0",
+  "homepage": "https://jbtolen.github.io/web-page/",
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
@@ -20,7 +21,9 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
