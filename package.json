@@ -1,7 +1,7 @@
 {
   "name": "student-management-app",
   "version": "1.0.0",
-  "homepage": "https://jbtolen.github.io/web-page/",
+  "homepage": "https://jbtolen.github.io",
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
